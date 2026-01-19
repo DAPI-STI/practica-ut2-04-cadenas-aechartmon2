@@ -14,4 +14,20 @@ Si el formato o los rangos son incorrectos, lanza ValueError.
 def parse_date(date_str: str) -> tuple[int, int, int]:
     """Devuelve (día, mes, año) como enteros a partir de una cadena d/m/aaaa."""
     # TODO: usa split("/"), convierte a int y valida rangos sencillos
-    raise NotImplementedError("Implementa parse_date(date_str)")
+    parts = date_str.split("/")
+    if len(parts) != 3:
+        raise ValueError("El formato de la fecha es incorrecto")
+    day_str, month_str, year_str = parts
+    if not (day_str.isdigit() and month_str.isdigit() and year_str.isdigit()):
+        raise ValueError("Día, mes y año deben ser números enteros")
+    day = int(day_str)
+    month = int(month_str)
+    year = int(year_str)
+    if not (1 <= day <= 31):
+        raise ValueError("El día debe estar entre 1 y 31")
+    if not (1 <= month <= 12):
+        raise ValueError("El mes debe estar entre 1 y 12")
+    if year < 0:
+        raise ValueError("El año debe ser un entero no negativo")
+    return (day, month, year)
+print(parse_date("15/08/2023"))
