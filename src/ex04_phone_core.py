@@ -14,4 +14,13 @@ def phone_core(s: str) -> str:
     - La parte central debe ser numérica.
     """
     # TODO: usa .strip(), .split("-") y validaciones con .isdigit() y startswith("+")
-    raise NotImplementedError("Implementa phone_core(s)")
+    parts = s.strip().split("-")
+    if len(parts) != 3:
+        raise ValueError("El formato del telef es incorrecto")
+    prefix, number, extension = parts
+    if not prefix.startswith("+"):
+        raise ValueError("El prefijo debe comenzar por un +")
+    if not number.isdigit():
+        raise ValueError("La parte central debe ser numérica")
+    return number
+print(phone_core("+34-987654321-01"))
