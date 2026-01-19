@@ -27,4 +27,5 @@ def emphasize_vowel(phrase: str, vowel: str) -> str:
         else:
             result += char
     return result
-print(emphasize_vowel("Aupa osasuna", "a"))
+assert emphasize_vowel("elefante", "e") == "ElEfantE"
+print(emphasize_vowel("elefante", "e"))
